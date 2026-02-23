@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wiser Business – Send Money from Singapore to the Philippines</title>
+  <style>
+    /* ──────────────────────────────────────────────
+       DESIGN TOKENS
+    ────────────────────────────────────────────── */
+    :root {
+      --fuchsia:        #C2185B;
+      --fuchsia-dark:   #880E4F;
+      --fuchsia-light:  #F8BBD9;
+      --fuchsia-pale:   #FDE8F2;
+      --purple:         #7B1FA2;
+      --purple-dark:    #4A148C;
+      --purple-light:   #CE93D8;
+      --purple-pale:    #F3E5F5;
+      --gradient:       linear-gradient(135deg, #880E4F 0%, #7B1FA2 100%);
+      --gradient-soft:  linear-gradient(135deg, #FDE8F2 0%, #F3E5F5 100%);
+      --white:          #FFFFFF;
+      --gray-50:        #FAFAFA;
+      --gray-100:       #F5F5F5;
+      --gray-200:       #EEEEEE;
+      --gray-400:       #BDBDBD;
+      --gray-600:       #757575;
+      --gray-800:       #424242;
+      --gray-900:       #212121;
+      --success:        #2E7D32;
+      --success-light:  #E8F5E9;
+      --radius-sm:      8px;
+      --radius-md:      16px;
+      --radius-lg:      24px;
+      --radius-xl:      32px;
+      --shadow-sm:      0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md:      0 8px 24px rgba(0,0,0,0.12);
+      --shadow-lg:      0 16px 48px rgba(0,0,0,0.15);
+    }
+
+    /* ──────────────────────────────────────────────
+       RESET & BASE
+    ────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--gray-900);
+      background: var(--white);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; border: none; font-family: inherit; }
+
+    /* ──────────────────────────────────────────────
+       UTILITIES
+    ────────────────────────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--fuchsia-pale); color: var(--fuchsia-dark);
+      border: 1px solid var(--fuchsia-light);
+      padding: 6px 14px; border-radius: 100px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.3px;
+    }
+    .badge-purple {
+      background: var(--purple-pale); color: var(--purple-dark);
+      border-color: var(--purple-light);
+    }
+    .tag {
+      display: inline-block; padding: 4px 12px; border-radius: 100px;
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.8px; background: var(--success-light); color: var(--success);
+    }
+    .section-label {
+      font-size: 13px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: var(--fuchsia); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px); font-weight: 800;
+      color: var(--gray-900); line-height: 1.2; margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 18px; color: var(--gray-600); line-height: 1.7;
+      max-width: 560px;
+    }
+    .highlight { color: var(--fuchsia); }
+    .highlight-purple { color: var(--purple); }
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--gradient); color: var(--white);
+      padding: 14px 28px; border-radius: 100px;
+      font-size: 16px; font-weight: 700; transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(194,24,91,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(194,24,91,0.45); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--fuchsia);
+      border: 2px solid var(--fuchsia);
+      padding: 13px 26px; border-radius: 100px;
+      font-size: 16px; font-weight: 700; transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: var(--fuchsia-pale); }
+
+    /* ──────────────────────────────────────────────
+       NAVIGATION
+    ────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 900; letter-spacing: -0.5px;
+    }
+    .nav-logo-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--gradient);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 18px; font-weight: 900;
+    }
+    .nav-logo-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-link {
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      font-size: 15px; font-weight: 500; color: var(--gray-800);
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-link:hover { background: var(--gray-100); color: var(--fuchsia); }
+    .nav-link.active { color: var(--fuchsia); font-weight: 600; }
+    .nav-cta { display: flex; gap: 10px; align-items: center; }
+    .btn-nav-login {
+      padding: 9px 18px; border-radius: 100px;
+      font-size: 14px; font-weight: 600; color: var(--gray-800);
+      transition: background 0.2s;
+    }
+    .btn-nav-login:hover { background: var(--gray-100); }
+    .btn-nav-get-started {
+      padding: 9px 20px; border-radius: 100px;
+      font-size: 14px; font-weight: 700; color: white;
+      background: var(--gradient);
+      box-shadow: 0 3px 14px rgba(194,24,91,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-nav-get-started:hover { transform: translateY(-1px); box-shadow: 0 5px 18px rgba(194,24,91,0.4); }
+    .nav-toggle { display: none; background: none; font-size: 24px; color: var(--gray-800); }
+
+    /* ──────────────────────────────────────────────
+       HERO
+    ────────────────────────────────────────────── */
+    .hero {
+      background: var(--gradient);
+      padding: 80px 0 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: end; position: relative; z-index: 1;
+    }
+    .hero-content { padding-bottom: 80px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.15); color: white;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 6px 16px; border-radius: 100px;
+      font-size: 13px; font-weight: 600; margin-bottom: 24px;
+    }
+    .hero-title {
+      font-size: clamp(36px, 5vw, 58px); font-weight: 900;
+      color: white; line-height: 1.1; margin-bottom: 20px;
+    }
+    .hero-title span {
+      display: block; color: var(--fuchsia-light); font-style: italic;
+    }
+    .hero-sub {
+      font-size: 19px; color: rgba(255,255,255,0.85);
+      line-height: 1.65; margin-bottom: 36px; max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-hero {
+      padding: 15px 30px; border-radius: 100px;
+      font-size: 16px; font-weight: 700;
+      transition: all 0.2s;
+    }
+    .btn-hero-primary {
+      background: white; color: var(--fuchsia-dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+    .btn-hero-outline {
+      background: transparent; color: white;
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-hero-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 48px;
+    }
+    .hero-stat { }
+    .hero-stat-num {
+      font-size: 28px; font-weight: 900; color: white; line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 4px;
+    }
+    .hero-divider {
+      width: 1px; background: rgba(255,255,255,0.2); align-self: stretch;
+    }
+
+    /* ── Calculator Card ── */
+    .hero-calculator {
+      background: white; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      padding: 32px; box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .calc-title {
+      font-size: 18px; font-weight: 800; color: var(--gray-900);
+      margin-bottom: 6px;
+    }
+    .calc-sub {
+      font-size: 13px; color: var(--gray-600); margin-bottom: 24px;
+    }
+    .calc-row { margin-bottom: 14px; }
+    .calc-label {
+      font-size: 12px; font-weight: 600; color: var(--gray-600);
+      text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px;
+    }
+    .calc-input-group {
+      display: flex; border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm); overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .calc-input-group:focus-within { border-color: var(--fuchsia); }
+    .calc-input {
+      flex: 1; padding: 13px 16px; font-size: 22px; font-weight: 700;
+      border: none; outline: none; color: var(--gray-900);
+      background: transparent;
+    }
+    .calc-currency-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 0 16px; background: var(--gray-50);
+      border-left: 2px solid var(--gray-200);
+      font-size: 15px; font-weight: 700; color: var(--gray-800);
+      white-space: nowrap; transition: background 0.2s;
+    }
+    .calc-currency-btn:hover { background: var(--gray-100); }
+    .flag { font-size: 20px; }
+    .calc-arrow {
+      display: flex; align-items: center; justify-content: center;
+      margin: 10px 0; color: var(--fuchsia);
+    }
+    .calc-arrow svg { width: 24px; height: 24px; }
+    .calc-fee-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 14px; background: var(--gray-50);
+      border-radius: var(--radius-sm); font-size: 13px;
+      color: var(--gray-600); margin-bottom: 8px;
+    }
+    .calc-fee-val { font-weight: 600; color: var(--gray-800); }
+    .calc-fee-highlight { color: var(--success); font-weight: 700; }
+    .rate-bar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 14px; background: var(--success-light);
+      border-radius: var(--radius-sm); margin-bottom: 14px;
+      border-left: 3px solid var(--success);
+    }
+    .rate-bar-icon { color: var(--success); }
+    .rate-bar-text { font-size: 13px; color: var(--success); font-weight: 600; }
+    .calc-result {
+      background: var(--gradient-soft); border: 2px solid var(--fuchsia-light);
+      border-radius: var(--radius-sm); padding: 16px;
+      text-align: center; margin-bottom: 16px;
+    }
+    .calc-result-label { font-size: 12px; color: var(--gray-600); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .calc-result-amount {
+      font-size: 36px; font-weight: 900; color: var(--fuchsia-dark);
+      line-height: 1.1; margin: 4px 0;
+    }
+    .calc-result-rate { font-size: 13px; color: var(--gray-600); }
+    .calc-cta { width: 100%; padding: 15px; font-size: 16px; }
+
+    /* ──────────────────────────────────────────────
+       TRUST BAR
+    ────────────────────────────────────────────── */
+    .trust-bar {
+      background: var(--gray-900); color: white;
+      padding: 20px 0;
+    }
+    .trust-bar-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85);
+    }
+    .trust-icon { font-size: 20px; }
+
+    /* ──────────────────────────────────────────────
+       FEATURES STRIP
+    ────────────────────────────────────────────── */
+    .features-strip { padding: 80px 0; background: var(--white); }
+    .features-header { text-align: center; margin-bottom: 56px; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .feature-card {
+      border: 1.5px solid var(--gray-200); border-radius: var(--radius-md);
+      padding: 32px 28px; transition: all 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .feature-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gradient-soft); opacity: 0; transition: opacity 0.25s;
+    }
+    .feature-card:hover { border-color: var(--fuchsia-light); box-shadow: var(--shadow-md); }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-card > * { position: relative; }
+    .feature-icon {
+      width: 52px; height: 52px; border-radius: var(--radius-sm);
+      background: var(--gradient-soft); border: 1.5px solid var(--fuchsia-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 20px;
+    }
+    .feature-title { font-size: 20px; font-weight: 800; margin-bottom: 10px; color: var(--gray-900); }
+    .feature-desc { font-size: 15px; color: var(--gray-600); line-height: 1.65; margin-bottom: 16px; }
+    .feature-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 700; color: var(--fuchsia);
+      transition: gap 0.2s;
+    }
+    .feature-link:hover { gap: 10px; }
+
+    /* ──────────────────────────────────────────────
+       HOW IT WORKS
+    ────────────────────────────────────────────── */
+    .how-it-works { padding: 80px 0; background: var(--gradient-soft); }
+    .how-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .how-steps { display: flex; flex-direction: column; gap: 0; }
+    .how-step {
+      display: flex; gap: 20px; padding: 24px 20px;
+      border-radius: var(--radius-md); cursor: pointer;
+      transition: background 0.2s; border: 2px solid transparent;
+    }
+    .how-step.active {
+      background: white; border-color: var(--fuchsia-light);
+      box-shadow: var(--shadow-sm);
+    }
+    .how-step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--gray-200); color: var(--gray-600);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 800; flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .how-step.active .how-step-num {
+      background: var(--gradient); color: white;
+    }
+    .how-step-content {}
+    .how-step-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; color: var(--gray-900); }
+    .how-step-desc { font-size: 15px; color: var(--gray-600); line-height: 1.6; }
+    .how-visual {
+      background: white; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg); overflow: hidden;
+    }
+    .how-visual-header {
+      background: var(--gradient); padding: 20px 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .how-visual-dots { display: flex; gap: 6px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-red { background: #FF5F57; }
+    .dot-yellow { background: #FFBD2E; }
+    .dot-green { background: #28CA41; }
+    .how-visual-title { font-size: 14px; font-weight: 600; color: white; }
+    .how-visual-body { padding: 24px; }
+    .transfer-card {
+      background: var(--gray-50); border-radius: var(--radius-sm);
+      padding: 20px; margin-bottom: 16px;
+    }
+    .transfer-route {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 16px;
+    }
+    .transfer-country {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 700; font-size: 16px;
+    }
+    .transfer-arrow-line {
+      flex: 1; height: 2px; background: var(--gray-200);
+      position: relative; display: flex; align-items: center; justify-content: center;
+    }
+    .transfer-arrow-line::after {
+      content: '→'; color: var(--fuchsia); font-weight: 900; font-size: 18px;
+      background: var(--gray-50); padding: 0 8px;
+    }
+    .transfer-amounts { display: flex; justify-content: space-between; }
+    .t-amount {}
+    .t-amount-label { font-size: 12px; color: var(--gray-600); font-weight: 500; }
+    .t-amount-val { font-size: 22px; font-weight: 900; color: var(--gray-900); }
+    .t-amount-sub { font-size: 12px; color: var(--gray-600); }
+    .transfer-status {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px; border-radius: 100px;
+      font-size: 12px; font-weight: 700;
+    }
+    .status-instant { background: var(--success-light); color: var(--success); }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .progress-track {
+      height: 4px; background: var(--gray-200);
+      border-radius: 100px; margin: 16px 0; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; background: var(--gradient);
+      border-radius: 100px; width: 75%; animation: progress 2s ease-in-out infinite alternate;
+    }
+    @keyframes progress { from { width: 60%; } to { width: 95%; } }
+    .mini-steps { display: flex; flex-direction: column; gap: 8px; }
+    .mini-step {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--gray-600);
+    }
+    .mini-step-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .done { background: var(--success); }
+    .pending { background: var(--gray-400); }
+    .active-dot { background: var(--fuchsia); animation: pulse 1.5s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; transform: scale(1); } 50% { opacity:0.6; transform: scale(1.3); } }
+
+    /* ──────────────────────────────────────────────
+       BUSINESS FEATURES
+    ────────────────────────────────────────────── */
+    .biz-features { padding: 80px 0; background: white; }
+    .biz-features-header { text-align: center; margin-bottom: 56px; }
+    .biz-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 24px; }
+    .biz-card {
+      border-radius: var(--radius-md); padding: 32px;
+      border: 1.5px solid var(--gray-200); position: relative; overflow: hidden;
+      transition: all 0.25s;
+    }
+    .biz-card:hover { box-shadow: var(--shadow-md); border-color: var(--purple-light); }
+    .biz-card-accent {
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: var(--gradient);
+    }
+    .biz-card-icon {
+      width: 48px; height: 48px; border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 20px;
+    }
+    .icon-fuchsia { background: var(--fuchsia-pale); }
+    .icon-purple { background: var(--purple-pale); }
+    .biz-card-title { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+    .biz-card-desc { font-size: 15px; color: var(--gray-600); line-height: 1.65; margin-bottom: 16px; }
+    .biz-card-list { display: flex; flex-direction: column; gap: 8px; }
+    .biz-list-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--gray-700);
+    }
+    .check {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--fuchsia-pale); color: var(--fuchsia);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; flex-shrink: 0; margin-top: 2px; font-weight: 900;
+    }
+    .biz-wide { grid-column: 1 / -1; }
+    .biz-wide-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+    }
+    .biz-wide-img {
+      background: var(--gradient); border-radius: var(--radius-md);
+      padding: 32px; display: flex; align-items: center; justify-content: center;
+      min-height: 220px;
+    }
+    .batch-animation {
+      display: flex; flex-direction: column; gap: 10px; width: 100%;
+    }
+    .batch-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.15); border-radius: var(--radius-sm);
+      padding: 10px 14px; border: 1px solid rgba(255,255,255,0.2);
+    }
+    .batch-name { font-size: 13px; font-weight: 600; color: white; display: flex; gap: 8px; align-items: center; }
+    .batch-amount { font-size: 14px; font-weight: 800; color: var(--fuchsia-light); }
+    .batch-status-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: #4CAF50;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    /* ──────────────────────────────────────────────
+       RATES & SAVINGS
+    ────────────────────────────────────────────── */
+    .rates-section { padding: 80px 0; background: var(--gradient); }
+    .rates-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .rates-content {}
+    .rates-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.15); color: white;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 6px 16px; border-radius: 100px;
+      font-size: 13px; font-weight: 600; margin-bottom: 24px;
+    }
+    .rates-title { font-size: clamp(28px, 4vw, 42px); font-weight: 900; color: white; line-height: 1.2; margin-bottom: 16px; }
+    .rates-sub { font-size: 18px; color: rgba(255,255,255,0.8); line-height: 1.65; margin-bottom: 32px; }
+    .rates-card {
+      background: white; border-radius: var(--radius-lg); padding: 28px;
+      box-shadow: var(--shadow-lg);
+    }
+    .rates-card-title { font-size: 16px; font-weight: 700; color: var(--gray-800); margin-bottom: 20px; }
+    .rate-comparison { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+    .rate-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-radius: var(--radius-sm);
+    }
+    .rate-row-other { background: var(--gray-100); }
+    .rate-row-wiser { background: var(--fuchsia-pale); border: 1.5px solid var(--fuchsia-light); }
+    .rate-provider { font-size: 14px; font-weight: 600; color: var(--gray-800); display: flex; align-items: center; gap: 8px; }
+    .rate-wiser-badge {
+      background: var(--gradient); color: white;
+      font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 100px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .rate-val { font-size: 15px; font-weight: 800; }
+    .rate-val-bad { color: var(--gray-600); }
+    .rate-val-good { color: var(--fuchsia-dark); }
+    .rate-save {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px; background: var(--success-light);
+      border-radius: var(--radius-sm); border-left: 3px solid var(--success);
+    }
+    .rate-save-text { font-size: 14px; color: var(--success); font-weight: 600; }
+    .rate-save-amount { font-size: 20px; font-weight: 900; color: var(--success); }
+
+    /* ──────────────────────────────────────────────
+       STATS SECTION
+    ────────────────────────────────────────────── */
+    .stats-section { padding: 80px 0; background: var(--white); }
+    .stats-header { text-align: center; margin-bottom: 56px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .stat-card {
+      text-align: center; padding: 40px 24px;
+      border: 1.5px solid var(--gray-200); border-radius: var(--radius-md);
+      transition: all 0.25s;
+    }
+    .stat-card:hover { border-color: var(--fuchsia-light); box-shadow: var(--shadow-md); background: var(--fuchsia-pale); }
+    .stat-num {
+      font-size: clamp(36px, 5vw, 52px); font-weight: 900;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      line-height: 1; margin-bottom: 8px;
+    }
+    .stat-label { font-size: 15px; color: var(--gray-600); line-height: 1.5; }
+
+    /* ──────────────────────────────────────────────
+       TESTIMONIALS
+    ────────────────────────────────────────────── */
+    .testimonials { padding: 80px 0; background: var(--gradient-soft); }
+    .testimonials-header { text-align: center; margin-bottom: 48px; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .testimonial-card {
+      background: white; border-radius: var(--radius-md); padding: 28px;
+      box-shadow: var(--shadow-sm); border: 1.5px solid var(--gray-200);
+      transition: all 0.25s;
+    }
+    .testimonial-card:hover { box-shadow: var(--shadow-md); border-color: var(--fuchsia-light); }
+    .t-stars { display: flex; gap: 3px; margin-bottom: 14px; font-size: 18px; }
+    .star { color: #FFC107; }
+    .t-quote {
+      font-size: 15px; color: var(--gray-700); line-height: 1.7;
+      font-style: italic; margin-bottom: 20px;
+    }
+    .t-author { display: flex; align-items: center; gap: 12px; }
+    .t-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--gradient); display: flex; align-items: center;
+      justify-content: center; color: white; font-size: 16px; font-weight: 800;
+      flex-shrink: 0;
+    }
+    .t-name { font-size: 15px; font-weight: 700; color: var(--gray-900); }
+    .t-role { font-size: 13px; color: var(--gray-600); }
+
+    /* ──────────────────────────────────────────────
+       FAQ
+    ────────────────────────────────────────────── */
+    .faq-section { padding: 80px 0; background: white; }
+    .faq-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; }
+    .faq-sidebar {}
+    .faq-sidebar-title { font-size: 32px; font-weight: 900; margin-bottom: 16px; }
+    .faq-sidebar-sub { font-size: 16px; color: var(--gray-600); line-height: 1.65; margin-bottom: 32px; }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm);
+      overflow: hidden; transition: border-color 0.2s;
+    }
+    .faq-item.open { border-color: var(--fuchsia); }
+    .faq-question {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 20px; cursor: pointer; gap: 16px;
+      font-size: 15px; font-weight: 600; color: var(--gray-900);
+      background: none; width: 100%; text-align: left;
+    }
+    .faq-question:hover { background: var(--gray-50); }
+    .faq-chevron {
+      width: 20px; height: 20px; color: var(--fuchsia); flex-shrink: 0;
+      transition: transform 0.25s;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer {
+      overflow: hidden; max-height: 0; transition: max-height 0.3s ease, padding 0.3s;
+      padding: 0 20px;
+    }
+    .faq-item.open .faq-answer { max-height: 200px; padding: 0 20px 18px; }
+    .faq-answer-text { font-size: 15px; color: var(--gray-600); line-height: 1.7; }
+
+    /* ──────────────────────────────────────────────
+       CTA BANNER
+    ────────────────────────────────────────────── */
+    .cta-banner { padding: 80px 0; background: var(--gradient); }
+    .cta-inner { text-align: center; }
+    .cta-title { font-size: clamp(32px, 5vw, 52px); font-weight: 900; color: white; margin-bottom: 16px; }
+    .cta-sub { font-size: 18px; color: rgba(255,255,255,0.8); max-width: 520px; margin: 0 auto 36px; line-height: 1.65; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-primary {
+      padding: 16px 32px; background: white; color: var(--fuchsia-dark);
+      border-radius: 100px; font-size: 17px; font-weight: 800;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2); transition: all 0.2s;
+    }
+    .btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+    .btn-cta-outline {
+      padding: 15px 30px; background: transparent; color: white;
+      border: 2px solid rgba(255,255,255,0.5); border-radius: 100px;
+      font-size: 17px; font-weight: 700; transition: all 0.2s;
+    }
+    .btn-cta-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+    .cta-trust { display: flex; align-items: center; justify-content: center; gap: 28px; margin-top: 36px; flex-wrap: wrap; }
+    .cta-trust-item { font-size: 13px; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 6px; }
+
+    /* ──────────────────────────────────────────────
+       FOOTER
+    ────────────────────────────────────────────── */
+    .footer { background: var(--gray-900); color: white; padding: 60px 0 32px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand {}
+    .footer-logo {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+      font-size: 20px; font-weight: 900;
+    }
+    .footer-logo-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--gradient); display: flex; align-items: center;
+      justify-content: center; color: white; font-size: 16px; font-weight: 900;
+    }
+    .footer-tagline { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 24px; max-width: 280px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); display: flex; align-items: center;
+      justify-content: center; font-size: 16px; transition: background 0.2s;
+    }
+    .social-btn:hover { background: var(--fuchsia); }
+    .footer-col-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-link {
+      font-size: 14px; color: rgba(255,255,255,0.7); transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--fuchsia-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-legal { font-size: 13px; color: rgba(255,255,255,0.4); }
+    .footer-legal a { color: rgba(255,255,255,0.5); }
+    .footer-legal a:hover { color: var(--fuchsia-light); }
+    .footer-flags { display: flex; gap: 8px; align-items: center; font-size: 13px; color: rgba(255,255,255,0.4); }
+
+    /* ──────────────────────────────────────────────
+       MOBILE NAV MENU
+    ────────────────────────────────────────────── */
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: white; padding: 24px;
+      flex-direction: column; gap: 8px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .btn-close-menu { background: none; font-size: 26px; color: var(--gray-800); }
+    .mobile-link {
+      padding: 14px 12px; font-size: 17px; font-weight: 600;
+      color: var(--gray-900); border-radius: var(--radius-sm); transition: background 0.2s;
+    }
+    .mobile-link:hover { background: var(--gray-100); color: var(--fuchsia); }
+
+    /* ──────────────────────────────────────────────
+       RESPONSIVE
+    ────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-calculator { border-radius: var(--radius-lg); }
+      .features-grid { grid-template-columns: 1fr; }
+      .how-inner { grid-template-columns: 1fr; gap: 40px; }
+      .biz-grid { grid-template-columns: 1fr; }
+      .biz-wide-inner { grid-template-columns: 1fr; }
+      .rates-inner { grid-template-columns: 1fr; gap: 40px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .faq-inner { grid-template-columns: 1fr; gap: 40px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .hero-stats { flex-wrap: wrap; gap: 20px; }
+    }
+    @media (max-width: 560px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .trust-bar-inner { gap: 20px; }
+      .hero-actions { flex-direction: column; }
+      .cta-actions { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════ -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">W</div>
+        <span class="nav-logo-text">Wiser</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#business" class="nav-link">Business</a>
+        <a href="#rates" class="nav-link">Rates</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#" class="nav-link">Help</a>
+      </div>
+
+      <div class="nav-cta">
+        <a href="#" class="btn-nav-login">Log in</a>
+        <a href="#" class="btn-nav-get-started">Get started</a>
+      </div>
+
+      <button class="nav-toggle" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+  <div class="mobile-menu-header">
+    <div class="nav-logo">
+      <div class="nav-logo-icon">W</div>
+      <span class="nav-logo-text">Wiser</span>
+    </div>
+    <button class="btn-close-menu" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
+  </div>
+  <a href="#features" class="mobile-link" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Features</a>
+  <a href="#business" class="mobile-link" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Business</a>
+  <a href="#rates" class="mobile-link" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Rates</a>
+  <a href="#faq" class="mobile-link" onclick="document.querySelector('.mobile-menu').classList.remove('open')">FAQ</a>
+  <a href="#" class="mobile-link">Help</a>
+  <hr style="border-color:var(--gray-200); margin: 8px 0;">
+  <a href="#" class="mobile-link">Log in</a>
+  <a href="#" class="btn-primary" style="margin-top: 8px; text-align: center;">Get started</a>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <!-- Left: Copy -->
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          🇸🇬 Singapore → 🇵🇭 Philippines
+        </div>
+        <h1 class="hero-title">
+          The smarter way to send money
+          <span>abroad from Singapore</span>
+        </h1>
+        <p class="hero-sub">
+          Send SGD to the Philippines instantly with the real mid-market rate. No markups, no surprises — just fast, transparent transfers your business can rely on.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn-hero btn-hero-primary">Get started free →</a>
+          <a href="#" class="btn-hero btn-hero-outline">Watch demo</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">12M+</div>
+            <div class="hero-stat-label">Happy customers</div>
+          </div>
+          <div class="hero-divider"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">0.3%</div>
+            <div class="hero-stat-label">Low transfer fee</div>
+          </div>
+          <div class="hero-divider"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">74%</div>
+            <div class="hero-stat-label">Instant transfers</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Calculator -->
+      <div class="hero-calculator">
+        <div class="calc-title">Send money to the Philippines</div>
+        <div class="calc-sub">Live mid-market rate · No hidden fees</div>
+
+        <div class="calc-row">
+          <div class="calc-label">You send</div>
+          <div class="calc-input-group">
+            <input class="calc-input" type="number" id="sendAmount" value="1000" oninput="calcConvert()" />
+            <div class="calc-currency-btn">
+              <span class="flag">🇸🇬</span> SGD
+            </div>
+          </div>
+        </div>
+
+        <!-- Fee rows -->
+        <div class="calc-fee-row">
+          <span>Transfer fee (0.35%)</span>
+          <span class="calc-fee-val" id="feeDisplay">SGD 3.50</span>
+        </div>
+        <div class="calc-fee-row">
+          <span>Amount converted</span>
+          <span class="calc-fee-val" id="convertedDisplay">SGD 996.50</span>
+        </div>
+
+        <div class="rate-bar">
+          <span class="rate-bar-icon">✓</span>
+          <span class="rate-bar-text">Mid-market rate: 1 SGD = <strong id="rateDisplay">41.52</strong> PHP — guaranteed</span>
+        </div>
+
+        <div class="calc-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </div>
+
+        <div class="calc-row">
+          <div class="calc-label">Recipient gets</div>
+          <div class="calc-input-group">
+            <input class="calc-input" type="text" id="receiveAmount" value="41,383.18" readonly style="color:var(--fuchsia-dark);" />
+            <div class="calc-currency-btn">
+              <span class="flag">🇵🇭</span> PHP
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-result">
+          <div class="calc-result-label">Total recipient gets</div>
+          <div class="calc-result-amount" id="resultDisplay">₱ 41,383.18</div>
+          <div class="calc-result-rate">Rate: 1 SGD = 41.52 PHP · Transfers usually arrive within seconds</div>
+        </div>
+
+        <button class="btn-primary calc-cta" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+          Send SGD to Philippines →
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     TRUST BAR
+══════════════════════════════════════ -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <span class="trust-icon">🏦</span> MAS Licensed in Singapore
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">🔒</span> Bank-level encryption
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">⚡</span> 74% of transfers are instant
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">🌏</span> 160+ countries supported
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     CORE FEATURES
+══════════════════════════════════════ -->
+<section class="features-strip" id="features">
+  <div class="container">
+    <div class="features-header">
+      <div class="section-label">Why Wiser</div>
+      <h2 class="section-title">International transfers, <span class="highlight">done right</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Real exchange rates. Transparent fees. Arrivals in seconds — not days.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Instant transfers</div>
+        <div class="feature-desc">74% of SGD → PHP transfers arrive in under 20 seconds. Your recipients in Manila, Cebu, or anywhere in the Philippines get funds fast.</div>
+        <a href="#" class="feature-link">See transfer speeds →</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Real mid-market rate</div>
+        <div class="feature-desc">We use the same exchange rate you find on Google — no markups, no hidden spread. What you see in the calculator is what your recipient gets.</div>
+        <a href="#" class="feature-link">Compare our rates →</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <div class="feature-title">Fees from 0.3%</div>
+        <div class="feature-desc">Our fee is always shown upfront before you confirm. For SGD to PHP, fees start at just 0.35% — up to 8× cheaper than traditional banks.</div>
+        <a href="#" class="feature-link">View full pricing →</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏦</div>
+        <div class="feature-title">40+ currencies held</div>
+        <div class="feature-desc">Open a Wiser Business account and hold SGD, USD, EUR, PHP and 40+ other currencies — switch between them instantly at the real rate.</div>
+        <a href="#" class="feature-link">Open a multi-currency account →</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <div class="feature-title">Send from anywhere</div>
+        <div class="feature-desc">Manage transfers on desktop or the Wiser mobile app. Schedule payments, set rate alerts, and track every transfer in real time.</div>
+        <a href="#" class="feature-link">Download the app →</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-title">Safe &amp; regulated</div>
+        <div class="feature-desc">Licensed by the Monetary Authority of Singapore (MAS). Your funds are safeguarded and never mixed with our operational money.</div>
+        <a href="#" class="feature-link">Our security standards →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════ -->
+<section class="how-it-works" id="how">
+  <div class="container">
+    <div class="how-inner">
+      <div>
+        <div class="section-label">How it works</div>
+        <h2 class="section-title">Send SGD to PHP in <span class="highlight">3 simple steps</span></h2>
+        <div class="how-steps" id="howSteps">
+          <div class="how-step active" onclick="setStep(0)">
+            <div class="how-step-num">1</div>
+            <div class="how-step-content">
+              <div class="how-step-title">Enter amount &amp; recipient</div>
+              <div class="how-step-desc">Type how many SGD you want to send. Enter your recipient's Philippine bank account details — we support BDO, BPI, Metrobank, GCash, and more.</div>
+            </div>
+          </div>
+          <div class="how-step" onclick="setStep(1)">
+            <div class="how-step-num">2</div>
+            <div class="how-step-content">
+              <div class="how-step-title">Review &amp; confirm</div>
+              <div class="how-step-desc">See the exact PHP amount, fee, and exchange rate before you confirm. No surprises. Lock in the rate and pay via PayNow, FAST, or GIRO.</div>
+            </div>
+          </div>
+          <div class="how-step" onclick="setStep(2)">
+            <div class="how-step-num">3</div>
+            <div class="how-step-content">
+              <div class="how-step-title">Money arrives in seconds</div>
+              <div class="how-step-desc">74% of transfers reach the Philippines in under 20 seconds. Track your payment live in the app. Your recipient gets a notification instantly.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual mockup -->
+      <div class="how-visual">
+        <div class="how-visual-header">
+          <div class="how-visual-dots">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <div class="how-visual-title">Wiser Transfer · SGD → PHP</div>
+        </div>
+        <div class="how-visual-body">
+          <div class="transfer-card">
+            <div class="transfer-route">
+              <div class="transfer-country">🇸🇬 Singapore</div>
+              <div class="transfer-arrow-line"></div>
+              <div class="transfer-country">🇵🇭 Philippines</div>
+            </div>
+            <div class="transfer-amounts">
+              <div class="t-amount">
+                <div class="t-amount-label">You send</div>
+                <div class="t-amount-val">SGD 1,000</div>
+                <div class="t-amount-sub">Fee: SGD 3.50</div>
+              </div>
+              <div class="t-amount" style="text-align:right;">
+                <div class="t-amount-label">They get</div>
+                <div class="t-amount-val" style="color:var(--fuchsia-dark);">₱ 41,383</div>
+                <div class="t-amount-sub">Rate: 41.52</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div style="font-size:14px; font-weight:600; color:var(--gray-800);">Transfer in progress</div>
+            <div class="transfer-status status-instant">
+              <div class="status-dot"></div> Instant
+            </div>
+          </div>
+
+          <div class="progress-track">
+            <div class="progress-fill"></div>
+          </div>
+
+          <div class="mini-steps">
+            <div class="mini-step">
+              <div class="mini-step-dot done"></div>
+              <span>Payment received from your SGD account</span>
+            </div>
+            <div class="mini-step">
+              <div class="mini-step-dot done"></div>
+              <span>Identity &amp; compliance verified</span>
+            </div>
+            <div class="mini-step">
+              <div class="mini-step-dot active-dot"></div>
+              <span><strong>Converting SGD → PHP at real rate...</strong></span>
+            </div>
+            <div class="mini-step">
+              <div class="mini-step-dot pending"></div>
+              <span>Delivering to BDO account in Philippines</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     BUSINESS FEATURES
+══════════════════════════════════════ -->
+<section class="biz-features" id="business">
+  <div class="container">
+    <div class="biz-features-header">
+      <div class="section-label">Wiser Business</div>
+      <h2 class="section-title">Everything your business needs to <span class="highlight">pay internationally</span></h2>
+      <p class="section-sub" style="margin:0 auto;">From payroll to supplier payments, Wiser Business handles cross-border finance so you can focus on growth.</p>
+    </div>
+
+    <div class="biz-grid">
+      <!-- Batch Payments -->
+      <div class="biz-card biz-wide">
+        <div class="biz-card-accent"></div>
+        <div class="biz-wide-inner">
+          <div>
+            <div class="biz-card-icon icon-fuchsia">📦</div>
+            <div class="biz-card-title">Batch payments</div>
+            <div class="biz-card-desc">Pay hundreds of recipients in the Philippines — staff, suppliers, contractors — in a single click. Upload a spreadsheet and we handle the rest.</div>
+            <div class="biz-card-list">
+              <div class="biz-list-item"><div class="check">✓</div> Pay up to 1,000 recipients at once</div>
+              <div class="biz-list-item"><div class="check">✓</div> Supports BDO, BPI, Metrobank, GCash, PayMaya</div>
+              <div class="biz-list-item"><div class="check">✓</div> CSV &amp; Excel upload supported</div>
+              <div class="biz-list-item"><div class="check">✓</div> One fee per batch — not per transaction</div>
+            </div>
+          </div>
+          <div class="biz-wide-img">
+            <div class="batch-animation">
+              <div style="font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:6px;">Batch transfer · SGD → PHP</div>
+              <div class="batch-row">
+                <div class="batch-name"><div class="batch-status-dot"></div> 🇵🇭 Maria Santos</div>
+                <div class="batch-amount">₱ 18,500</div>
+              </div>
+              <div class="batch-row">
+                <div class="batch-name"><div class="batch-status-dot"></div> 🇵🇭 Juan Dela Cruz</div>
+                <div class="batch-amount">₱ 22,000</div>
+              </div>
+              <div class="batch-row">
+                <div class="batch-name"><div class="batch-status-dot"></div> 🇵🇭 Ana Reyes</div>
+                <div class="batch-amount">₱ 15,750</div>
+              </div>
+              <div class="batch-row">
+                <div class="batch-name"><div class="batch-status-dot" style="animation-delay:0.5s;"></div> 🇵🇭 Carlo Mendoza</div>
+                <div class="batch-amount">₱ 19,800</div>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-top:8px; padding: 0 4px;">
+                <span style="font-size:12px; color:rgba(255,255,255,0.5);">4 recipients · 1 batch</span>
+                <span style="font-size:13px; font-weight:900; color:white;">₱ 76,050 total</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-currency account -->
+      <div class="biz-card">
+        <div class="biz-card-accent"></div>
+        <div class="biz-card-icon icon-purple">🌐</div>
+        <div class="biz-card-title">Multi-currency account</div>
+        <div class="biz-card-desc">Hold SGD, USD, EUR, PHP and 40+ currencies in one business account. Switch between currencies at the real exchange rate, whenever you need.</div>
+        <div class="biz-card-list">
+          <div class="biz-list-item"><div class="check">✓</div> Local SGD account details (PayNow, SWIFT)</div>
+          <div class="biz-list-item"><div class="check">✓</div> Receive payments in multiple currencies</div>
+          <div class="biz-list-item"><div class="check">✓</div> Wiser Business debit card included</div>
+        </div>
+      </div>
+
+      <!-- Payment Links -->
+      <div class="biz-card">
+        <div class="biz-card-accent"></div>
+        <div class="biz-card-icon icon-fuchsia">🔗</div>
+        <div class="biz-card-title">Payment links &amp; invoices</div>
+        <div class="biz-card-desc">Create branded payment links, digital invoices, and QR codes in minutes. Accept payments in SGD or PHP from customers across Southeast Asia.</div>
+        <div class="biz-card-list">
+          <div class="biz-list-item"><div class="check">✓</div> Accept credit &amp; debit cards in 160+ currencies</div>
+          <div class="biz-list-item"><div class="check">✓</div> Shareable payment links &amp; QR codes</div>
+          <div class="biz-list-item"><div class="check">✓</div> Automated invoice reminders</div>
+        </div>
+      </div>
+
+      <!-- Accounting integrations -->
+      <div class="biz-card">
+        <div class="biz-card-accent"></div>
+        <div class="biz-card-icon icon-purple">📋</div>
+        <div class="biz-card-title">Accounting integrations</div>
+        <div class="biz-card-desc">Sync with Xero, QuickBooks, and other accounting software automatically. Every SGD transfer, every PHP payment, perfectly reconciled.</div>
+        <div class="biz-card-list">
+          <div class="biz-list-item"><div class="check">✓</div> Xero &amp; QuickBooks sync</div>
+          <div class="biz-list-item"><div class="check">✓</div> Automatic FX reconciliation</div>
+          <div class="biz-list-item"><div class="check">✓</div> Export statements in multiple formats</div>
+        </div>
+      </div>
+
+      <!-- Team Controls -->
+      <div class="biz-card">
+        <div class="biz-card-accent"></div>
+        <div class="biz-card-icon icon-fuchsia">👥</div>
+        <div class="biz-card-title">Team &amp; spending controls</div>
+        <div class="biz-card-desc">Add team members, set transfer limits, require approvals for large payments. Full visibility and control over every international payment your business makes.</div>
+        <div class="biz-card-list">
+          <div class="biz-list-item"><div class="check">✓</div> Role-based access control</div>
+          <div class="biz-list-item"><div class="check">✓</div> Approval workflows for large transfers</div>
+          <div class="biz-list-item"><div class="check">✓</div> Real-time transaction notifications</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     RATES & SAVINGS
+══════════════════════════════════════ -->
+<section class="rates-section" id="rates">
+  <div class="container">
+    <div class="rates-inner">
+      <div class="rates-content">
+        <div class="rates-eyebrow">💸 Real savings</div>
+        <h2 class="rates-title">Stop giving your money to banks</h2>
+        <p class="rates-sub">Traditional banks add a hidden markup to the exchange rate — sometimes 3–5% on top of their fee. Wiser uses the real mid-market rate, so more of your SGD becomes PHP.</p>
+        <a href="#" class="btn-hero btn-hero-primary" style="display:inline-flex;">Compare rates now →</a>
+      </div>
+
+      <div class="rates-card">
+        <div class="rates-card-title">Sending SGD 1,000 to the Philippines</div>
+        <div class="rate-comparison">
+          <div class="rate-row rate-row-other">
+            <div class="rate-provider">🏦 DBS Bank</div>
+            <div class="rate-val rate-val-bad">₱ 38,200 <small style="font-size:12px; color:var(--gray-400);">(rate: ~38.2)</small></div>
+          </div>
+          <div class="rate-row rate-row-other">
+            <div class="rate-provider">🏦 OCBC Bank</div>
+            <div class="rate-val rate-val-bad">₱ 38,640 <small style="font-size:12px; color:var(--gray-400);">(rate: ~38.6)</small></div>
+          </div>
+          <div class="rate-row rate-row-other">
+            <div class="rate-provider">💸 Remittance agent</div>
+            <div class="rate-val rate-val-bad">₱ 39,500 <small style="font-size:12px; color:var(--gray-400);">(rate: ~39.5)</small></div>
+          </div>
+          <div class="rate-row rate-row-wiser">
+            <div class="rate-provider">
+              <span>⭐ Wiser</span>
+              <span class="rate-wiser-badge">Best rate</span>
+            </div>
+            <div class="rate-val rate-val-good">₱ 41,383 <small style="font-size:12px; color:var(--fuchsia);">(rate: 41.52)</small></div>
+          </div>
+        </div>
+        <div class="rate-save">
+          <div class="rate-save-text">You save vs. average bank</div>
+          <div class="rate-save-amount">₱ 2,743+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     STATS
+══════════════════════════════════════ -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-header">
+      <div class="section-label">By the numbers</div>
+      <h2 class="section-title">Trusted by millions worldwide</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">12M+</div>
+        <div class="stat-label">Customers across 160+ countries</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">74%</div>
+        <div class="stat-label">Of transfers arrive instantly (under 20 sec)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0.3%</div>
+        <div class="stat-label">Starting fee — one of the lowest globally</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">SGD 12B+</div>
+        <div class="stat-label">Transferred every month globally</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════ -->
+<section class="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="section-label">What customers say</div>
+      <h2 class="section-title">Singaporeans love sending with <span class="highlight">Wiser</span></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="t-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <div class="t-quote">"I send money to my family in Manila every month. Wiser consistently gives me a much better rate than DBS and the money arrives within seconds. It's incredible."</div>
+        <div class="t-author">
+          <div class="t-avatar">LT</div>
+          <div>
+            <div class="t-name">Lena Tan</div>
+            <div class="t-role">Freelance designer, Singapore</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <div class="t-quote">"We use Wiser Business to pay our 60 staff in the Philippines every fortnight. Batch payments save us hours and the fees are a fraction of what Western Union charged."</div>
+        <div class="t-author">
+          <div class="t-avatar">RC</div>
+          <div>
+            <div class="t-name">Raymond Chua</div>
+            <div class="t-role">CEO, TechBridge Pte Ltd</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <div class="t-quote">"Switched from my bank to Wiser for supplier payments to Cebu. Saved over SGD 800 in the first month alone. The transparency is refreshing — every fee is shown upfront."</div>
+        <div class="t-author">
+          <div class="t-avatar">PL</div>
+          <div>
+            <div class="t-name">Priya Lakshmanan</div>
+            <div class="t-role">Operations Manager, Harbour Goods</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FAQ
+══════════════════════════════════════ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div class="faq-sidebar">
+        <div class="section-label">FAQ</div>
+        <h2 class="faq-sidebar-title">Got questions?</h2>
+        <p class="faq-sidebar-sub">Everything you need to know about sending SGD to the Philippines with Wiser Business.</p>
+        <a href="#" class="btn-secondary">Contact support →</a>
+      </div>
+
+      <div class="faq-list" id="faqList">
+        <div class="faq-item open">
+          <button class="faq-question" onclick="toggleFaq(0)">
+            How long does an SGD to PHP transfer take?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-text">74% of SGD to PHP transfers arrive in under 20 seconds. In rare cases it may take up to a few hours depending on your recipient's bank. We'll notify you and your recipient at every step via email and the Wiser app.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(1)">
+            What is the fee for sending SGD to PHP?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-text">Fees start at 0.35% of the transfer amount. There are no monthly fees, no markup on the exchange rate, and no receiving fees. The exact fee is always shown before you confirm a transfer.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(2)">
+            Which Philippine banks and e-wallets does Wiser support?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-text">We support all major Philippine banks including BDO, BPI, Metrobank, UnionBank, Landbank, and PNB. E-wallets including GCash and PayMaya are also supported for instant delivery.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(3)">
+            Is Wiser Business licensed to operate in Singapore?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-text">Yes. Wiser Payments Pte Ltd holds a Major Payment Institution licence issued by the Monetary Authority of Singapore (MAS), Licence No. PS20200528. Your funds are safeguarded in segregated accounts at top-tier Singapore banks.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(4)">
+            Can I send large amounts for my business?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-text">Wiser Business supports high-volume transfers. Business accounts have higher limits than personal accounts, and you can contact our business sales team for enterprise-grade limits and pricing for transfers above SGD 500,000.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════ -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-inner">
+      <h2 class="cta-title">Start sending SGD to the Philippines today</h2>
+      <p class="cta-sub">Open a free Wiser Business account in minutes. No paperwork, no hidden fees, no surprises.</p>
+      <div class="cta-actions">
+        <a href="#" class="btn-cta-primary">Open a free account →</a>
+        <a href="#" class="btn-cta-outline">Talk to sales</a>
+      </div>
+      <div class="cta-trust">
+        <div class="cta-trust-item">✓ MAS Licensed</div>
+        <div class="cta-trust-item">✓ Free to open</div>
+        <div class="cta-trust-item">✓ No monthly fees</div>
+        <div class="cta-trust-item">✓ Cancel anytime</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">W</div>
+          <span>Wiser</span>
+        </div>
+        <p class="footer-tagline">The smarter way for Singapore businesses to pay internationally. Real rates. Low fees. Instant transfers.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn">f</a>
+          <a href="#" class="social-btn">in</a>
+          <a href="#" class="social-btn">𝕏</a>
+          <a href="#" class="social-btn">▶</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Product</div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">Send money</a>
+          <a href="#" class="footer-link">Multi-currency account</a>
+          <a href="#" class="footer-link">Batch payments</a>
+          <a href="#" class="footer-link">Payment links</a>
+          <a href="#" class="footer-link">Wiser Card</a>
+          <a href="#" class="footer-link">Integrations</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">About us</a>
+          <a href="#" class="footer-link">Pricing</a>
+          <a href="#" class="footer-link">Security</a>
+          <a href="#" class="footer-link">Blog</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Press</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Support</div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">Help centre</a>
+          <a href="#" class="footer-link">Contact us</a>
+          <a href="#" class="footer-link">System status</a>
+          <a href="#" class="footer-link">SGD → PHP guide</a>
+          <a href="#" class="footer-link">API docs</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        © 2025 Wiser Payments Pte Ltd · MAS Licence No. PS20200528 ·
+        <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Cookies</a>
+        <br>Wiser Payments Pte Ltd is regulated by the Monetary Authority of Singapore.
+      </div>
+      <div class="footer-flags">
+        🇸🇬 Singapore &nbsp;·&nbsp; 🇵🇭 Philippines &nbsp;·&nbsp; 🌏 160+ countries
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+  /* ─── Currency calculator ─── */
+  const RATE = 41.52;
+  const FEE_PCT = 0.0035;
+
+  function calcConvert() {
+    const send = parseFloat(document.getElementById('sendAmount').value) || 0;
+    const fee = send * FEE_PCT;
+    const converted = send - fee;
+    const received = converted * RATE;
+
+    document.getElementById('feeDisplay').textContent = 'SGD ' + fee.toFixed(2);
+    document.getElementById('convertedDisplay').textContent = 'SGD ' + converted.toFixed(2);
+    document.getElementById('rateDisplay').textContent = RATE.toFixed(2);
+    document.getElementById('receiveAmount').value = received.toLocaleString('en-SG', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    document.getElementById('resultDisplay').textContent = '₱ ' + received.toLocaleString('en-SG', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  }
+
+  /* init */
+  calcConvert();
+
+  /* ─── How it works steps ─── */
+  function setStep(index) {
+    const steps = document.querySelectorAll('#howSteps .how-step');
+    steps.forEach((s, i) => s.classList.toggle('active', i === index));
+  }
+
+  /* ─── FAQ accordion ─── */
+  function toggleFaq(index) {
+    const items = document.querySelectorAll('#faqList .faq-item');
+    items.forEach((item, i) => {
+      if (i === index) {
+        item.classList.toggle('open');
+      } else {
+        item.classList.remove('open');
+      }
+    });
+  }
+
+  /* ─── Smooth scroll for nav links ─── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelector('.mobile-menu')?.classList.remove('open');
+      }
+    });
+  });
+
+  /* ─── Sticky nav active state ─── */
+  const sections = ['features', 'business', 'rates', 'faq'];
+  const navLinks = document.querySelectorAll('.nav-link');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -65% 0px' });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</body>
+</html>
